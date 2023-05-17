@@ -1,0 +1,22 @@
+# basic python image
+FROM python:3.7
+
+# install pika to access rabbitmq
+RUN pip3 install --upgrade pip
+RUN pip3 install pika
+RUN pip3 install cryptography
+RUN pip3 install paramiko
+RUN pip3 install wolframalpha
+RUN pip install pickle-mixin
+#RUN pip3 install time
+# Without this setting, Python never prints anything out.
+ENV PYTHONUNBUFFERED=1
+
+# declare the source directory
+WORKDIR /usr/src/app/consumerMath
+
+# copy the file
+COPY consumerMath.py .
+
+# start command
+CMD [ "python", "consumerMath.py" ]
